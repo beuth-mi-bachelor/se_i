@@ -8,7 +8,7 @@ import projects.Project;
 
 public abstract class Contest {
 
-	public static long UNIQUE_ID;
+	public static long UNIQUE_ID = 0;
 
 	private long id;
 	private Date startDate;

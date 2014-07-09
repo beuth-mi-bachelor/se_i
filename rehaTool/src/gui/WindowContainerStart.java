@@ -36,8 +36,8 @@ public class WindowContainerStart extends JFrame {
 				"Hauptwettbewerb Erstellen");
 		this.menu.addMenuWithItems("Nebenwettbewerb",
 				"Nebenwettbewerb Erstellen");
-		this.menu.addMenuWithItems("Feature", "Feature Erstellen",
-				"Feature Kommentieren", "Feature Bewerten", "Feature Suchen");
+		this.menu.addMenuWithItems("Projekte", "Projekte Suchen",
+				"Ideen Suchen");
 		this.add(this.menu, BorderLayout.NORTH);
 	}
 
