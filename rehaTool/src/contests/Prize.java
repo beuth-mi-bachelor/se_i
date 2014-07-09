@@ -5,13 +5,17 @@ import java.awt.image.BufferedImage;
 public class Prize {
 
 	private final String name;
+	private final String description;
 	private final BufferedImage image;
-	private final int price;
 
-	public Prize(String name, int price, BufferedImage image) {
+	public Prize(String name, BufferedImage image, String description) {
 		this.name = name;
-		this.price = price;
 		this.image = image;
+		this.description = description;
+	}
+
+	public String getDescription() {
+		return this.description;
 	}
 
 	public String getName() {
@@ -22,19 +26,16 @@ public class Prize {
 		return this.image;
 	}
 
-	public int getPrice() {
-		return this.price;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
+				+ (this.description == null ? 0 : this.description.hashCode());
+		result = prime * result
 				+ (this.image == null ? 0 : this.image.hashCode());
 		result = prime * result
 				+ (this.name == null ? 0 : this.name.hashCode());
-		result = prime * result + this.price;
 		return result;
 	}
 
@@ -50,6 +51,13 @@ public class Prize {
 			return false;
 		}
 		Prize other = (Prize) obj;
+		if (this.description == null) {
+			if (other.description != null) {
+				return false;
+			}
+		} else if (!this.description.equals(other.description)) {
+			return false;
+		}
 		if (this.image == null) {
 			if (other.image != null) {
 				return false;
@@ -64,16 +72,13 @@ public class Prize {
 		} else if (!this.name.equals(other.name)) {
 			return false;
 		}
-		if (this.price != other.price) {
-			return false;
-		}
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Prize [name=" + this.name + ", image=" + this.image
-				+ ", price=" + this.price + "]";
+		return "Prize [name=" + this.name + ", description=" + this.description
+				+ ", image=" + this.image + "]";
 	}
 
 }
