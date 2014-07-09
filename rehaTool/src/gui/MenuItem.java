@@ -1,6 +1,6 @@
 package gui;
 
-import handler.MenuEventHandler;
+import gui.handler.MenuEventHandler;
 
 import javax.swing.JMenuItem;
 

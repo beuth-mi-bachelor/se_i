@@ -3,9 +3,13 @@ package contests.maincontest;
 import java.util.Date;
 
 import contests.Contest;
-import win.WinItem;
+import contests.Prize;
 
 public class MainContest extends Contest {
+
+	public MainContest(Date startDate, Date endDate, String name, Prize prize) {
+		super(startDate, endDate, name, prize);
+	}
 
 	@Override
 	public long getID() {
@@ -48,12 +52,12 @@ public class MainContest extends Contest {
 	}
 
 	@Override
-	public WinItem getWinItem() {
+	public Prize getWinItem() {
 		return super.getWinItem();
 	}
 
 	@Override
-	public void setWinItem(WinItem winItem) {
+	public void setWinItem(Prize winItem) {
 		super.setWinItem(winItem);
 	}
 

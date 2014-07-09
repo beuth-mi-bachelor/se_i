@@ -1,6 +1,6 @@
 package gui;
 
-import handler.MenuEventHandler;
+import gui.handler.MenuEventHandler;
 
 import java.awt.Dimension;
 import java.util.ArrayList;
