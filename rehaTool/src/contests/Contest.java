@@ -1,10 +1,10 @@
-package wettbewerbe;
+package contests;
 
 import java.util.Date;
 
 import win.WinItem;
 
-public abstract class Wettbewerb {
+public abstract class Contest {
 
 	private long ID;
 

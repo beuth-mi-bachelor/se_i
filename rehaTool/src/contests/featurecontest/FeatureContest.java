@@ -1,11 +1,11 @@
-package wettbewerbe.hauptwettbewerb;
+package contests.featurecontest;
 
 import java.util.Date;
 
-import wettbewerbe.Wettbewerb;
+import contests.Contest;
 import win.WinItem;
 
-public class HauptWettbewerb extends Wettbewerb {
+public class FeatureContest extends Contest {
 
 	@Override
 	public long getID() {
