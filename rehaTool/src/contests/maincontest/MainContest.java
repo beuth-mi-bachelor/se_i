@@ -1,14 +1,17 @@
 package contests.maincontest;
 
+import java.awt.image.BufferedImage;
 import java.util.Date;
+
+import javax.swing.ImageIcon;
 
 import contests.Contest;
 import contests.Prize;
 
 public class MainContest extends Contest {
 
-	public MainContest(Date startDate, Date endDate, String name, Prize prize) {
-		super(startDate, endDate, name, prize);
+	public MainContest(String startDate, String endDate, String name, Prize prize, BufferedImage image) {
+		super(startDate, endDate, name, prize, image);
 	}
 
 	@Override
@@ -22,22 +25,22 @@ public class MainContest extends Contest {
 	}
 
 	@Override
-	public Date getStart() {
+	public String getStart() {
 		return super.getStart();
 	}
 
 	@Override
-	public void setStart(Date start) {
+	public void setStart(String start) {
 		super.setStart(start);
 	}
 
 	@Override
-	public Date getEnd() {
+	public String getEnd() {
 		return super.getEnd();
 	}
 
 	@Override
-	public void setEnd(Date end) {
+	public void setEnd(String end) {
 		super.setEnd(end);
 	}
 

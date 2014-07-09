@@ -1,8 +1,11 @@
 package contests;
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import javax.swing.ImageIcon;
 
 import projects.Project;
 
@@ -11,21 +14,31 @@ public abstract class Contest {
 	public static long UNIQUE_ID = 0;
 
 	private long id;
-	private Date startDate;
-	private Date endDate;
+	private String startDate;
+	private String endDate;
 	private final Date createdDate;
 	private String name;
 	private Prize prize;
+	private BufferedImage image;
 	private List<Project> participants;
 
-	public Contest(Date startDate, Date endDate, String name, Prize prize) {
+	public Contest(String startDate, String endDate, String name, Prize prize, BufferedImage image) {
 		this.id = Contest.UNIQUE_ID++;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.createdDate = new Date();
 		this.name = name;
 		this.prize = prize;
+		this.image = image;
 		this.participants = new ArrayList<Project>();
+	}
+
+	public BufferedImage getImage() {
+		return this.image;
+	}
+
+	public void setImage(BufferedImage image) {
+		this.image = image;
 	}
 
 	public Date getCreatedDate() {
@@ -48,19 +61,19 @@ public abstract class Contest {
 		this.id = iD;
 	}
 
-	public Date getStart() {
+	public String getStart() {
 		return this.startDate;
 	}
 
-	public void setStart(Date start) {
+	public void setStart(String start) {
 		this.startDate = start;
 	}
 
-	public Date getEnd() {
+	public String getEnd() {
 		return this.endDate;
 	}
 
-	public void setEnd(Date end) {
+	public void setEnd(String end) {
 		this.endDate = end;
 	}
 
