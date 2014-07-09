@@ -31,12 +31,13 @@ public class WindowContainerStart extends JFrame {
 	}
 
 	private void createMenu() {
-
 		this.menu.addMenuWithItems("Datei", "Beenden");
-		this.menu.addMenuWithItems("Hauptwettbewerb", "Erstellen",
-				"Bearbeiten", "Löschen");
-		this.menu.addMenuWithItems("Nebenwettbewerb", "Erstellen",
-				"Bearbeiten", "Löschen");
+		this.menu.addMenuWithItems("Hauptwettbewerb",
+				"Hauptwettbewerb Erstellen");
+		this.menu.addMenuWithItems("Nebenwettbewerb",
+				"Nebenwettbewerb Erstellen");
+		this.menu.addMenuWithItems("Feature", "Feature Erstellen",
+				"Feature Kommentieren", "Feature Bewerten", "Feature Suchen");
 		this.add(this.menu, BorderLayout.NORTH);
 	}
 

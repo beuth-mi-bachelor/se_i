@@ -23,10 +23,4 @@ public class Menu extends JMenu {
 		return this.menuItems;
 	}
 
-	public void addMenu(String name) {
-		MenuItem temporaryMenu = new MenuItem(name);
-		this.menuItems.add(temporaryMenu);
-		this.add(temporaryMenu);
-	}
-
 }
