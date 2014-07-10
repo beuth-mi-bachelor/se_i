@@ -11,10 +11,12 @@ import javax.swing.JFrame;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import forms.FeatureContestForm;
 import forms.MainContestForm;
 import forms.UserDetails;
 import tests.CreateDummyData;
 import utils.Utilities;
+import views.FeatureProjectView;
 import views.ImageRenderer;
 import views.MainView;
 import views.TableInterface;
@@ -49,9 +51,9 @@ public class WindowContainerStart extends JFrame implements ActionListener{
         
 		data = new CreateDummyData(50);
 		
-		//showMain();
+		showMain();
 		//showUserDetails() ;
-		showMainContestForm();
+		//showMainContestForm();
 		//showContestTable(data);
 		//showFeatureContestTable(data);
 		//showMainContestTable(data);
@@ -229,11 +231,11 @@ public class WindowContainerStart extends JFrame implements ActionListener{
 			System.exit(0);
 		} else if (e.getActionCommand().equals("Benutzer Erstellen")) {
 			changeWindow();
-			// TO DO
+			
 			validate();			
 		} else if (e.getActionCommand().equals("Benutzer Anzeigen")) {
 			changeWindow();
-			// TO DO
+			showUserTable(data);
 			validate();			
 		} else if (e.getActionCommand().equals("Hauptwettbewerb Erstellen")) {
 			changeWindow();
@@ -241,15 +243,15 @@ public class WindowContainerStart extends JFrame implements ActionListener{
 			validate();
 		} else if (e.getActionCommand().equals("Hauptwettbewerbe Anzeigen")) {
 			changeWindow();
-			// TO DO
+			showMainContestTable(data);
 			validate();			
 		} else if (e.getActionCommand().equals("Nebenwettbewerb Erstellen")) {
 			changeWindow();
-
+			// TO DO
 			validate();				
 		} else if (e.getActionCommand().equals("Nebenwettbewerb Anzeigen")) {
 			changeWindow();
-			// TO DO
+			showFeatureContestTable(data);			
 			validate();				
 		} else if (e.getActionCommand().equals("Projekte suchen")) {
 			changeWindow();
@@ -257,7 +259,7 @@ public class WindowContainerStart extends JFrame implements ActionListener{
 			validate();				
 		} else if (e.getActionCommand().equals("Projekte Anzeigen")) {
 			changeWindow();
-			// TO DO
+			showProjectTable(data);
 			validate();				
 		} else {
 			changeWindow();
