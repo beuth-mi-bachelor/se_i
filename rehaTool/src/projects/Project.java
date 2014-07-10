@@ -7,12 +7,13 @@ import java.util.Date;
 import java.util.List;
 
 import user.User;
+import views.TableInterface;
 
 import comments.Comment;
 
 import contests.Contest;
 
-public abstract class Project {
+public abstract class Project extends TableInterface {
 
 	public static long UNIQUE_ID = 0;
 	private long id;
@@ -34,6 +35,18 @@ public abstract class Project {
 		this.belongsToProject = belongsToProject;
 		this.comments = new ArrayList<Comment>();
 		this.image = image;
+	}
+
+	@Override
+	public Object[] getColumn() {
+		return new Object[] { "Bild", "ID", "Projektname", "Erstellt am",
+				"Eingestellt von", "Gehört zu" };
+	}
+
+	@Override
+	public Object[] getRow() {
+		return new Object[] { this.image, this.id, this.name, this.created,
+				this.creator, this.belongsToProject };
 	}
 
 	public BufferedImage getImage() {

@@ -151,7 +151,7 @@ public class CreateDummyData {
 	}
 
 	public static int getRandomDaysOffset() {
-		return getRandomNumberBetween(20, 1500) * 24 * 60 * 60 * 1000;
+		return getRandomNumberBetween(10, 50) * 24 * 60 * 60 * 1000;
 	}
 
 	public static Prize createPrize() {

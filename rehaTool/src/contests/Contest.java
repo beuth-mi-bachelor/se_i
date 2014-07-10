@@ -6,8 +6,9 @@ import java.util.Date;
 import java.util.List;
 
 import projects.Project;
+import views.TableInterface;
 
-public abstract class Contest {
+public abstract class Contest extends TableInterface {
 
 	public static long UNIQUE_ID = 0;
 
@@ -30,6 +31,27 @@ public abstract class Contest {
 		this.prize = prize;
 		this.image = image;
 		this.participants = new ArrayList<Project>();
+	}
+
+	@Override
+	public Object[] getColumn() {
+		return new Object[] { "Bild", "ID", "Projektname", "Startdatum",
+				"Enddatum", "Erstellt am", "Prize", "Eingereichte Projekte" };
+	}
+
+	@Override
+	public Object[] getRow() {
+		return new Object[] { this.image, this.id, this.name, this.startDate,
+				this.endDate, this.createdDate, this.prize.getName(),
+				this.listAllParticipants() };
+	}
+
+	private String listAllParticipants() {
+		String projects = "";
+		for (Project participant : participants) {
+			projects += participant.getName();
+		}
+		return projects;
 	}
 
 	public BufferedImage getImage() {

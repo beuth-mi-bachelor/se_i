@@ -2,11 +2,15 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.util.List;
 
 import javax.swing.JFrame;
 
 import tests.CreateDummyData;
-import forms.MainContestForm;
+import utils.Utilities;
+import views.ImageRenderer;
+import views.TableInterface;
+import views.TableView;
 
 /**
  * @author Angelina Staeck, Michael Duve & Paul Sprotte
@@ -30,15 +34,24 @@ public class WindowContainerStart extends JFrame {
 
 		this.createMenu();
 
-		this.add(new MainContestForm(), BorderLayout.CENTER);
+		CreateDummyData data = new CreateDummyData(50);
 
-		CreateDummyData data = new CreateDummyData(5);
-		Object[] da = data.users.toArray();
-		for (int i = 0; i < da.length; i++) {
-			System.out.println(da[i]);
-		}
+		// this.add(new MainContestForm(), BorderLayout.CENTER);
+
+		showContestTable(data);
 
 		this.setVisible(true);
+	}
+
+	public void showContestTable(CreateDummyData data) {
+		List<TableInterface> list = Utilities
+				.convertContestList(data.allContests);
+
+		TableView table = new TableView(Utilities.getTableData(list));
+		table.getTable().getColumnModel().getColumn(0)
+				.setCellRenderer(new ImageRenderer());
+		table.getTable().setRowHeight(150);
+		this.add(table.getScrollpane());
 	}
 
 	private void createMenu() {

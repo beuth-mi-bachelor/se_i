@@ -2,7 +2,9 @@ package contests;
 
 import java.awt.image.BufferedImage;
 
-public class Prize {
+import views.TableInterface;
+
+public class Prize extends TableInterface {
 
 	private final String name;
 	private final String description;
@@ -12,6 +14,16 @@ public class Prize {
 		this.name = name;
 		this.image = image;
 		this.description = description;
+	}
+
+	@Override
+	public Object[] getColumn() {
+		return new Object[] { "Bild", "Name", "Beschreibung" };
+	}
+
+	@Override
+	public Object[] getRow() {
+		return new Object[] { this.image, this.name, this.description };
 	}
 
 	public String getDescription() {

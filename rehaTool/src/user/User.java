@@ -5,12 +5,13 @@ import java.util.Date;
 import java.util.List;
 
 import projects.Project;
+import views.TableInterface;
 
 import comments.Comment;
 
 import contests.Contest;
 
-public class User {
+public class User extends TableInterface {
 
 	public static long UNIQUE_ID = 0;
 	private final long id;
@@ -27,6 +28,14 @@ public class User {
 		this.projectList = new ArrayList<Project>();
 		this.contestList = new ArrayList<Contest>();
 		this.commentList = new ArrayList<Comment>();
+	}
+
+	public Object[] getColumn() {
+		return new Object[] { "ID", "Name", "Beigetreten am" };
+	}
+
+	public Object[] getRow() {
+		return new Object[] { this.id, this.name, this.registeredDate };
 	}
 
 	public static long getUNIQUE_ID() {
