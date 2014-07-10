@@ -14,15 +14,21 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
 import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import projects.Project;
+import projects.featureproject.FeatureProject;
+import tests.CreateDummyData;
+import user.ActiveUser;
 import contests.Contest;
 import contests.Prize;
 import contests.featurecontest.FeatureContest;
@@ -40,19 +46,14 @@ public class FeatureProjectForm extends JPanel {
 	public final static int HEIGHT = 500;
 
 	private JLabel name;
-	private JLabel startDate;
-	private JLabel endDate;
-	private JLabel prizeName;
-	private JLabel prizeImg;
+	private JLabel wettbewerb;
 	private JLabel img;
 	private JLabel content;
 	private JLabel titel;
 
 	private JTextField textName;
-	private JTextField textStartDate;
-	private JTextField textEndDate;
-	private JTextField namePrize;
-	private BufferedImage prizeImage;
+	private JRadioButton radioButton1;
+	private JRadioButton radioButton2;
 	private JTextArea textContent;
 	private BufferedImage image;
 
@@ -165,13 +166,14 @@ public class FeatureProjectForm extends JPanel {
 		outerPanel.setLayout(new BoxLayout(outerPanel, BoxLayout.PAGE_AXIS));
 
 		JScrollPane scrollPane = new JScrollPane(textContent);
-		outerPanel.add(scrollPane, BorderLayout.CENTER);
+		outerPanel.add(scrollPane, BorderLayout.CENTER);		
+		
 		GridBagConstraints gbc_outerPanel = new GridBagConstraints();
 		gbc_outerPanel.fill = GridBagConstraints.BOTH;
 		gbc_outerPanel.insets = new Insets(0, 0, 5, 5);
 		gbc_outerPanel.gridx = 1;
 		gbc_outerPanel.gridy = 5;
-		this.add(outerPanel, gbc_outerPanel);		
+		this.add(outerPanel, gbc_outerPanel);
 
 		submitButton = new JButton("Erstellen");
 		cancelButton = new JButton("Abbrechen");
@@ -204,11 +206,9 @@ public class FeatureProjectForm extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
-			Prize prize = new Prize(namePrize.getText(), prizeImage,
-					textPrize.getText());
-			Contest contest = new FeatureContest(textStartDate.getText(),
-					textEndDate.getText(), textName.getText(), prize, image);
-			System.out.println(contest);
+			Project project = new FeatureProject(textName.getText(),
+					textContent.getText(), ActiveUser.getCurrentUser(), CreateDummyData.createFeatureContest(), image);
+			System.out.println(project);
 		}
 	}
 
@@ -231,14 +231,7 @@ public class FeatureProjectForm extends JPanel {
 						Image.SCALE_SMOOTH);
 				lblNewLabel.setIcon(new ImageIcon(scaledImage));
 			}
-			if (button.equals(prizeImageButton)) {
-				ImageDialog imgDialog = new ImageDialog();
-				prizeImage = imgDialog.getImage();
-				image = imgDialog.getImage();
-				Image scaledImage = image.getScaledInstance(100, 100,
-						Image.SCALE_SMOOTH);
-				lblBottomimage.setIcon(new ImageIcon(scaledImage));
-			}
+			
 		}
 	}
 

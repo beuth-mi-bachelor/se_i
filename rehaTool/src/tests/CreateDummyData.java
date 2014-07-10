@@ -77,7 +77,7 @@ public class CreateDummyData {
 			Contest randomContest = contestList.get(getRandomNumberBetween(0,
 					contestList.size()));
 			projectList.add(new FeatureProject("Feature Project "
-					+ getRandomNumber(), randomUser, randomContest,
+					+ getRandomNumber(), getRandomText()[0], randomUser, randomContest,
 					createRandomImage()));
 		}
 		return projectList;
@@ -92,7 +92,7 @@ public class CreateDummyData {
 			Contest randomContest = contestList.get(getRandomNumberBetween(0,
 					contestList.size()));
 			projectList.add(new MainProject(
-					"Main Project " + getRandomNumber(), randomUser,
+					"Main Project " + getRandomNumber(), getRandomText()[0], randomUser,
 					randomContest, createRandomImage()));
 		}
 		return projectList;
