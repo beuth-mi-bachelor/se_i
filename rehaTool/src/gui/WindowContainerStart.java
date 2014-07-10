@@ -59,8 +59,19 @@ public class WindowContainerStart extends JFrame implements ActionListener{
 		//showFeatureProjectTable(data);
 		//showMainProjectTable(data);
 		//showProjectTable(data);
+		//showFeatureProjectDetails();
+		//showMainProjectDetails();
 		this.setVisible(true);
 		
+	}
+		
+	public void showFeatureProjectDetails() {
+		currentActivePanel = new FeatureProjectView(data.featureProjects.get(0));
+		this.add(currentActivePanel, BorderLayout.CENTER);
+	}
+	public void showMainProjectDetails() {
+		currentActivePanel = new FeatureProjectView(data.mainProjects.get(0));
+		this.add(currentActivePanel, BorderLayout.CENTER);
 	}
 	
 	public void showUserDetails() {
