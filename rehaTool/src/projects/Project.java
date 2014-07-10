@@ -1,5 +1,6 @@
 package projects;
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -21,8 +22,10 @@ public abstract class Project {
 	private User creator;
 	private Contest belongsToProject;
 	private List<Comment> comments;
+	private final BufferedImage image;
 
-	public Project(String name, User creator, Contest belongsToProject) {
+	public Project(String name, User creator, Contest belongsToProject,
+			BufferedImage image) {
 		super();
 		this.id = Project.UNIQUE_ID++;
 		this.name = name;
@@ -30,6 +33,11 @@ public abstract class Project {
 		this.created = new Date();
 		this.belongsToProject = belongsToProject;
 		this.comments = new ArrayList<Comment>();
+		this.image = image;
+	}
+
+	public BufferedImage getImage() {
+		return this.image;
 	}
 
 	public long getId() {

@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.swing.ImageIcon;
-
 import projects.Project;
 
 public abstract class Contest {
@@ -22,7 +20,8 @@ public abstract class Contest {
 	private BufferedImage image;
 	private List<Project> participants;
 
-	public Contest(String startDate, String endDate, String name, Prize prize, BufferedImage image) {
+	public Contest(String startDate, String endDate, String name, Prize prize,
+			BufferedImage image) {
 		this.id = Contest.UNIQUE_ID++;
 		this.startDate = startDate;
 		this.endDate = endDate;

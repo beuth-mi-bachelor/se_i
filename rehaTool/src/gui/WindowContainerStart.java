@@ -5,6 +5,8 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
+import forms.MainContestForm;
+
 /**
  * @author Angelina Staeck, Michael Duve & Paul Sprotte
  */
@@ -26,6 +28,8 @@ public class WindowContainerStart extends JFrame {
 		this.menu = new MenuBar();
 
 		this.createMenu();
+
+		this.add(new MainContestForm(), BorderLayout.CENTER);
 
 		this.setVisible(true);
 	}

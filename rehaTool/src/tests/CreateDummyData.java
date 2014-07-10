@@ -11,6 +11,7 @@ import projects.Project;
 import projects.featureproject.FeatureProject;
 import projects.mainproject.MainProject;
 import user.User;
+import utils.Utilities;
 
 import comments.Comment;
 
@@ -67,7 +68,8 @@ public class CreateDummyData {
 			Contest randomContest = contestList.get(getRandomNumberBetween(0,
 					contestList.size()));
 			projectList.add(new FeatureProject("Feature Project "
-					+ getRandomNumber(), randomUser, randomContest));
+					+ getRandomNumber(), randomUser, randomContest,
+					createRandomImage()));
 		}
 		return projectList;
 	}
@@ -82,7 +84,7 @@ public class CreateDummyData {
 					contestList.size()));
 			projectList.add(new MainProject(
 					"Main Project " + getRandomNumber(), randomUser,
-					randomContest));
+					randomContest, createRandomImage()));
 		}
 		return projectList;
 	}
@@ -113,15 +115,19 @@ public class CreateDummyData {
 	}
 
 	public static Contest createFeatureContest() {
-		return new FeatureContest(getRandomDateInThePast(),
-				getRandomDateInTheFuture(), "Feature Contest "
-						+ getRandomNumber(), createPrize());
+		return new FeatureContest(
+				Utilities.dateToTextfield(getRandomDateInThePast()),
+				Utilities.dateToTextfield(getRandomDateInTheFuture()),
+				"Feature Contest " + getRandomNumber(), createPrize(),
+				createRandomImage());
 	}
 
 	public static Contest createMainContest() {
-		return new MainContest(getRandomDateInThePast(),
-				getRandomDateInTheFuture(),
-				"Main Contest " + getRandomNumber(), createPrize());
+		return new MainContest(
+				Utilities.dateToTextfield(getRandomDateInThePast()),
+				Utilities.dateToTextfield(getRandomDateInTheFuture()),
+				"Main Contest " + getRandomNumber(), createPrize(),
+				createRandomImage());
 	}
 
 	public static Date getRandomDateInThePast() {
