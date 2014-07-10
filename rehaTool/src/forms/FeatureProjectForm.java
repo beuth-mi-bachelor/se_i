@@ -98,7 +98,7 @@ public class FeatureProjectForm extends JPanel {
 		imageButton.addActionListener(new uploadListener());
 		
 		titel = new JLabel();
-		titel.setText("Featurprojekt erstellen");
+		titel.setText("Featureprojekt erstellen");
 		titel.setFont(new Font("Arial", Font.ITALIC, 20));		
 		GridBagConstraints gbc_titel = new GridBagConstraints();
 		gbc_titel.fill = GridBagConstraints.BOTH;
@@ -108,7 +108,7 @@ public class FeatureProjectForm extends JPanel {
 		this.add(titel, gbc_titel);
 		
 		img = new JLabel();
-		img.setText("Bildupload Featurprojekt: ");
+		img.setText("Bildupload Featureprojekt: ");
 
 		GridBagConstraints gbc_img = new GridBagConstraints();
 		gbc_img.fill = GridBagConstraints.BOTH;
@@ -137,7 +137,7 @@ public class FeatureProjectForm extends JPanel {
 		panel.add(lblNewLabel);
 
 		name = new JLabel();
-		name.setText("Name des Featurprojektes: ");
+		name.setText("Name des Featureprojektes: ");
 		GridBagConstraints gbc_name = new GridBagConstraints();
 		gbc_name.fill = GridBagConstraints.BOTH;
 		gbc_name.insets = new Insets(0, 0, 5, 5);
@@ -153,7 +153,7 @@ public class FeatureProjectForm extends JPanel {
 		gbc_textName.gridy = 3;
 		this.add(textName, gbc_textName);
 		content = new JLabel();
-		content.setText("Beschreibung des Featurprojektes: ");
+		content.setText("Beschreibung des Featureprojektes: ");
 		GridBagConstraints gbc_content = new GridBagConstraints();
 		gbc_content.fill = GridBagConstraints.BOTH;
 		gbc_content.insets = new Insets(0, 0, 5, 5);
@@ -174,32 +174,31 @@ public class FeatureProjectForm extends JPanel {
 		gbc_outerPanel.gridx = 1;
 		gbc_outerPanel.gridy = 5;
 		this.add(outerPanel, gbc_outerPanel);
-
-		submitButton = new JButton("Erstellen");
-		cancelButton = new JButton("Abbrechen");
-		buttonPanel3.setLayout(new BoxLayout(buttonPanel3, BoxLayout.X_AXIS));
-
-		submitButton.addActionListener(new okPressedListener());
-		cancelButton.addActionListener(new cancelListener());
+		
+				submitButton = new JButton("Erstellen");
+				cancelButton = new JButton("Abbrechen");
+				buttonPanel3.setLayout(new BoxLayout(buttonPanel3, BoxLayout.X_AXIS));
+				
+						submitButton.addActionListener(new okPressedListener());
+						cancelButton.addActionListener(new cancelListener());
+						buttonPanel3.add(submitButton);
+						buttonPanel3.add(cancelButton);
+						GridBagConstraints gbc_buttonPanel3 = new GridBagConstraints();
+						gbc_buttonPanel3.insets = new Insets(0, 0, 5, 5);
+						gbc_buttonPanel3.fill = GridBagConstraints.BOTH;
+						gbc_buttonPanel3.gridx = 1;
+						gbc_buttonPanel3.gridy = 11;
+						this.add(buttonPanel3, gbc_buttonPanel3);
 
 		panel_1 = new JPanel();
 		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
 		gbc_panel_1.gridheight = 4;
-		gbc_panel_1.insets = new Insets(0, 0, 5, 0);
 		gbc_panel_1.fill = GridBagConstraints.BOTH;
 		gbc_panel_1.gridx = 2;
 		gbc_panel_1.gridy = 13;
 		add(panel_1, gbc_panel_1);
 
 		panel_1.add(lblBottomimage);
-		buttonPanel3.add(submitButton);
-		buttonPanel3.add(cancelButton);
-		GridBagConstraints gbc_buttonPanel3 = new GridBagConstraints();
-		gbc_buttonPanel3.insets = new Insets(0, 0, 0, 5);
-		gbc_buttonPanel3.fill = GridBagConstraints.BOTH;
-		gbc_buttonPanel3.gridx = 1;
-		gbc_buttonPanel3.gridy = 16;
-		this.add(buttonPanel3, gbc_buttonPanel3);
 	}
 
 	public class okPressedListener implements ActionListener {
