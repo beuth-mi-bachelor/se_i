@@ -3,6 +3,8 @@ package forms;
 import gui.WindowContainerStart;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -35,6 +37,9 @@ public class MainContestForm extends JPanel {
 	 */
 	private static final long serialVersionUID = -4306745152649428256L;
 
+	public JPanel self = this;
+	public Component parent = self.getParent();
+	
 	public final static int WIDTH = WindowContainerStart.WIDTH;
 	public final static int HEIGHT = 500;
 
@@ -292,6 +297,9 @@ public class MainContestForm extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO: GO TO START
+			Container parent = self.getParent();
+			parent.remove(self);
+			parent.repaint();
 		}
 	}
 

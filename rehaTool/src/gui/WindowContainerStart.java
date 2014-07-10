@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.swing.JFrame;
 
+import forms.MainContestForm;
+import forms.UserDetails;
 import tests.CreateDummyData;
 import utils.Utilities;
 import views.ImageRenderer;
@@ -22,8 +24,8 @@ public class WindowContainerStart extends JFrame {
 	 */
 	private static final long serialVersionUID = 3055528933453917278L;
 
-	public final static int WIDTH = 800;
-	public final static int HEIGHT = 600;
+	public final static int WIDTH = 1000;
+	public final static int HEIGHT = 720;
 
 	private final MenuBar menu;
 
@@ -36,13 +38,22 @@ public class WindowContainerStart extends JFrame {
 
 		CreateDummyData data = new CreateDummyData(50);
 
-		// this.add(new MainContestForm(), BorderLayout.CENTER);
+		this.add(new MainContestForm(), BorderLayout.CENTER);
+		//this.add(new UserDetails(data.users.get(0)), BorderLayout.CENTER);
 
-		showContestTable(data);
+
+		//showContestTable(data);
 
 		this.setVisible(true);
+		
+		
 	}
 
+	public void changeWindow() {
+		this.removeAll();
+		this.repaint();
+	}
+	
 	public void showContestTable(CreateDummyData data) {
 		List<TableInterface> list = Utilities
 				.convertContestList(data.allContests);
@@ -66,7 +77,8 @@ public class WindowContainerStart extends JFrame {
 	}
 
 	private void setWindowPreferences() {
-		this.setPreferredSize(new Dimension(800, 600));
+		this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.pack();
 		this.setLocationRelativeTo(null);
 	}

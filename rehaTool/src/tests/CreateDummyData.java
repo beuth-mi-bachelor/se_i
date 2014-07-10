@@ -1,6 +1,7 @@
 package tests;
 
 import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,9 +13,7 @@ import projects.featureproject.FeatureProject;
 import projects.mainproject.MainProject;
 import user.User;
 import utils.Utilities;
-
 import comments.Comment;
-
 import contests.Contest;
 import contests.Prize;
 import contests.featurecontest.FeatureContest;
@@ -166,7 +165,9 @@ public class CreateDummyData {
 		int r = getRandomNumberBetween(0, 255);
 		int g = getRandomNumberBetween(0, 255);
 		int b = getRandomNumberBetween(0, 255);
-		image.getGraphics().setColor(new Color(r, g, b));
+		Graphics2D g2d = image.createGraphics();
+		g2d.setPaint ( new Color ( r, g, b ) );
+		g2d.fillRect ( 0, 0, image.getWidth(), image.getHeight() );
 		return image;
 	}
 
@@ -175,7 +176,7 @@ public class CreateDummyData {
 	}
 
 	public static User createRandomUser() {
-		return new User(getRandomName());
+		return new User(getRandomName(), createRandomImage());
 	}
 
 	public static String[] getRandomText() {
