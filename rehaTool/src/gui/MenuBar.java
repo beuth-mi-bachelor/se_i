@@ -1,8 +1,7 @@
 package gui;
 
-import gui.handler.MenuEventHandler;
-
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,12 +18,12 @@ public class MenuBar extends JMenuBar {
 	public final static int HEIGHT = 30;
 
 	private final List<Menu> menu;
-	private final MenuEventHandler menuEventHandler;
+	
 
 	public MenuBar() {
 		this.setSize(new Dimension(WIDTH, HEIGHT));
 		this.menu = new ArrayList<Menu>();
-		this.menuEventHandler = new MenuEventHandler();
+	
 	}
 
 	public List<Menu> getMenu() {
@@ -39,11 +38,11 @@ public class MenuBar extends JMenuBar {
 	 * @param names
 	 *            the names of the MenuItems
 	 */
-	public void addMenuWithItems(String name, String... names) {
+	public void addMenuWithItems(ActionListener event, String name, String... names) {
 		Menu temporaryMenu = new Menu(name);
 		for (String menuItemName : names) {
 			temporaryMenu
-					.add(new MenuItem(menuItemName, this.menuEventHandler));
+					.add(new MenuItem(event, menuItemName));
 		}
 		this.menu.add(temporaryMenu);
 		this.add(temporaryMenu);

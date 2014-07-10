@@ -1,6 +1,6 @@
 package gui;
 
-import gui.handler.MenuEventHandler;
+import java.awt.event.ActionListener;
 
 import javax.swing.JMenuItem;
 
@@ -11,9 +11,9 @@ public class MenuItem extends JMenuItem {
 	 */
 	private static final long serialVersionUID = -1510770963891463007L;
 
-	public MenuItem(String name, MenuEventHandler menuEventHandler) {
+	public MenuItem(ActionListener event, String name) {
 		super(name);
-		this.addActionListener(menuEventHandler);
+		this.addActionListener(event);
 	}
 
 }
