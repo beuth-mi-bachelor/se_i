@@ -24,12 +24,14 @@ public abstract class Project extends TableInterface {
 	private Contest belongsToProject;
 	private List<Comment> comments;
 	private final BufferedImage image;
+	private String content;
 
-	public Project(String name, User creator, Contest belongsToProject,
+	public Project(String name, String content, User creator, Contest belongsToProject,
 			BufferedImage image) {
 		super();
 		this.id = Project.UNIQUE_ID++;
 		this.name = name;
+		this.content = content;
 		this.creator = creator;
 		this.created = new Date();
 		this.belongsToProject = belongsToProject;

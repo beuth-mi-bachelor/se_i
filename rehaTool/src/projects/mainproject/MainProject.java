@@ -8,9 +8,9 @@ import contests.Contest;
 
 public class MainProject extends Project {
 
-	public MainProject(String name, User creator, Contest belongsToProject,
+	public MainProject(String name, String content, User creator, Contest belongsToProject,
 			BufferedImage image) {
-		super(name, creator, belongsToProject, image);
+		super(name, content, creator, belongsToProject, image);
 	}
 
 }

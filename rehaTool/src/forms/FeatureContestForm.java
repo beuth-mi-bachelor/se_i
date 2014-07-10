@@ -25,10 +25,11 @@ import javax.swing.border.EmptyBorder;
 
 import contests.Contest;
 import contests.Prize;
+import contests.featurecontest.FeatureContest;
 import contests.maincontest.MainContest;
 import dialog.ImageDialog;
 
-public class MainContestForm extends JPanel {
+public class FeatureContestForm extends JPanel {
 
 	/**
 	 * generated serial id
@@ -72,7 +73,7 @@ public class MainContestForm extends JPanel {
 	private JPanel panel_1;
 	private final JLabel lblBottomimage = new JLabel();
 
-	public MainContestForm() {
+	public FeatureContestForm() {
 		this.setPreferredSize(new Dimension(WindowContainerStart.WIDTH, HEIGHT));
 		this.setBorder(new EmptyBorder(0, 0, 0, 0));
 
@@ -96,8 +97,9 @@ public class MainContestForm extends JPanel {
 		imageButton = new JButton("Upload");
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
 		imageButton.addActionListener(new uploadListener());
+		
 		titel = new JLabel();
-		titel.setText("Maincontest erstellen");
+		titel.setText("Featurcontest erstellen");
 		titel.setFont(new Font("Arial", Font.ITALIC, 20));		
 		GridBagConstraints gbc_titel = new GridBagConstraints();
 		gbc_titel.fill = GridBagConstraints.BOTH;
@@ -105,9 +107,9 @@ public class MainContestForm extends JPanel {
 		gbc_titel.gridx = 0;
 		gbc_titel.gridy = 0;
 		this.add(titel, gbc_titel);
-
+		
 		img = new JLabel();
-		img.setText("Bildupload Wettbewerb: ");
+		img.setText("Bildupload Nebenwettbewerb: ");
 
 		GridBagConstraints gbc_img = new GridBagConstraints();
 		gbc_img.fill = GridBagConstraints.BOTH;
@@ -136,7 +138,7 @@ public class MainContestForm extends JPanel {
 		panel.add(lblNewLabel);
 
 		name = new JLabel();
-		name.setText("Name des Hauptwettbewerbs: ");
+		name.setText("Name des Nebenwettbewerbs: ");
 		GridBagConstraints gbc_name = new GridBagConstraints();
 		gbc_name.fill = GridBagConstraints.BOTH;
 		gbc_name.insets = new Insets(0, 0, 5, 5);
@@ -152,7 +154,7 @@ public class MainContestForm extends JPanel {
 		gbc_textName.gridy = 3;
 		this.add(textName, gbc_textName);
 		content = new JLabel();
-		content.setText("Beschreibung des Hauptwettbewerbs: ");
+		content.setText("Beschreibung des Nebenwettbewerbs: ");
 		GridBagConstraints gbc_content = new GridBagConstraints();
 		gbc_content.fill = GridBagConstraints.BOTH;
 		gbc_content.insets = new Insets(0, 0, 5, 5);
@@ -282,7 +284,7 @@ public class MainContestForm extends JPanel {
 
 			Prize prize = new Prize(namePrize.getText(), prizeImage,
 					textPrize.getText());
-			Contest contest = new MainContest(textStartDate.getText(),
+			Contest contest = new FeatureContest(textStartDate.getText(),
 					textEndDate.getText(), textName.getText(), prize, image);
 			System.out.println(contest);
 		}
@@ -319,3 +321,4 @@ public class MainContestForm extends JPanel {
 	}
 
 }
+
