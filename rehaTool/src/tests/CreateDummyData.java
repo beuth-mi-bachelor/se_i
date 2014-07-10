@@ -46,6 +46,16 @@ public class CreateDummyData {
 		this.allProjects.addAll(this.featureProjects);
 	}
 
+	@Override
+	public String toString() {
+		return "CreateDummyData [users=" + this.users + ", comments="
+				+ this.comments + ", allProjects=" + this.allProjects
+				+ ", mainProjects=" + this.mainProjects + ", featureProjects="
+				+ this.featureProjects + ", allContests=" + this.allContests
+				+ ", mainContests=" + this.mainContests + ", featureContests="
+				+ this.featureContests + "]";
+	}
+
 	public static List<Comment> createCommentDummyList(int numberOfElements,
 			List<User> userList) {
 		String[] textArray = getRandomText();

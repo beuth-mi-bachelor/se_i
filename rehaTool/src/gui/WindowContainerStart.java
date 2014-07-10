@@ -5,6 +5,7 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
+import tests.CreateDummyData;
 import forms.MainContestForm;
 
 /**
@@ -30,6 +31,12 @@ public class WindowContainerStart extends JFrame {
 		this.createMenu();
 
 		this.add(new MainContestForm(), BorderLayout.CENTER);
+
+		CreateDummyData data = new CreateDummyData(5);
+		Object[] da = data.users.toArray();
+		for (int i = 0; i < da.length; i++) {
+			System.out.println(da[i]);
+		}
 
 		this.setVisible(true);
 	}
