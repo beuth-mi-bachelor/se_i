@@ -18,6 +18,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -76,11 +77,12 @@ public class MainContestForm extends JPanel {
 	private final JLabel lblNewLabel = new JLabel();
 	private JPanel panel_1;
 	private final JLabel lblBottomimage = new JLabel();
+	public WindowContainerStart mainFrame;
 
-	public MainContestForm() {
+	public MainContestForm(WindowContainerStart mainFrame) {
 		this.setPreferredSize(new Dimension(WindowContainerStart.WIDTH, HEIGHT));
 		this.setBorder(new EmptyBorder(0, 0, 0, 0));
-
+		this.mainFrame = mainFrame;
 		this.initializeForm();
 	}
 
@@ -296,10 +298,7 @@ public class MainContestForm extends JPanel {
 	public class cancelListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO: GO TO START
-			Container parent = self.getParent();
-			parent.remove(self);
-			parent.repaint();
+			mainFrame.changeWindow();
 		}
 	}
 

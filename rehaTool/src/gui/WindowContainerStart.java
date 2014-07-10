@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import forms.MainContestForm;
 import forms.UserDetails;
@@ -27,8 +28,11 @@ public class WindowContainerStart extends JFrame {
 	public final static int WIDTH = 1000;
 	public final static int HEIGHT = 720;
 
+	public JPanel currentActivePanel;
+	
 	private final MenuBar menu;
-
+	private CreateDummyData data;
+	
 	public WindowContainerStart() {
 		this.setWindowPreferences();
 
@@ -36,32 +40,41 @@ public class WindowContainerStart extends JFrame {
 
 		this.createMenu();
 
-		CreateDummyData data = new CreateDummyData(50);
-
-		this.add(new MainContestForm(), BorderLayout.CENTER);
-		//this.add(new UserDetails(data.users.get(0)), BorderLayout.CENTER);
-
-
+		data = new CreateDummyData(50);
+		
+		
+		//showUserDetails() ;
+		//showMainContestForm();
 		//showContestTable(data);
 
 		this.setVisible(true);
 		
-		
+	}
+	
+	public void showUserDetails() {
+		currentActivePanel = new UserDetails(data.users.get(0));
+		this.add(currentActivePanel, BorderLayout.CENTER);
+	}
+	
+	public void showMainContestForm() {
+		currentActivePanel = new MainContestForm(this);
+		this.add(currentActivePanel, BorderLayout.CENTER);
 	}
 
 	public void changeWindow() {
-		this.removeAll();
+		this.remove(currentActivePanel);
 		this.repaint();
 	}
 	
 	public void showContestTable(CreateDummyData data) {
 		List<TableInterface> list = Utilities
 				.convertContestList(data.allContests);
-
+		
 		TableView table = new TableView(Utilities.getTableData(list));
 		table.getTable().getColumnModel().getColumn(0)
 				.setCellRenderer(new ImageRenderer());
 		table.getTable().setRowHeight(150);
+		currentActivePanel = table;
 		this.add(table.getScrollpane());
 	}
 

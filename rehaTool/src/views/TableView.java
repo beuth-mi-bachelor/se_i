@@ -1,10 +1,11 @@
 package views;
 
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 
-public class TableView {
+public class TableView extends JPanel{
 
 	private final JTable table;
 	private final JScrollPane scrollpane;
