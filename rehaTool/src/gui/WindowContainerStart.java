@@ -12,6 +12,7 @@ import forms.UserDetails;
 import tests.CreateDummyData;
 import utils.Utilities;
 import views.ImageRenderer;
+import views.MainView;
 import views.TableInterface;
 import views.TableView;
 
@@ -42,13 +43,23 @@ public class WindowContainerStart extends JFrame {
 
 		data = new CreateDummyData(50);
 		
-		
+		//showMain();
 		//showUserDetails() ;
 		//showMainContestForm();
 		//showContestTable(data);
-
+		//showFeatureContestTable(data);
+		//showMainContestTable(data);
+		//showUserTable(data);
+		//showFeatureProjectTable(data);
+		//showMainProjectTable(data);
+		showProjectTable(data);
 		this.setVisible(true);
 		
+	}
+	
+	public void showMain() {
+		this.currentActivePanel = new MainView("img/reha-logo.png");
+		this.add(currentActivePanel, BorderLayout.CENTER);
 	}
 	
 	public void showUserDetails() {
@@ -77,7 +88,81 @@ public class WindowContainerStart extends JFrame {
 		currentActivePanel = table;
 		this.add(table.getScrollpane());
 	}
+	
+	public void showFeatureContestTable(CreateDummyData data) {
+		List<TableInterface> list = Utilities
+				.convertContestList(data.featureContests);
+		
+		TableView table = new TableView(Utilities.getTableData(list));
+		table.getTable().getColumnModel().getColumn(0)
+				.setCellRenderer(new ImageRenderer());
+		table.getTable().setRowHeight(150);
+		currentActivePanel = table;
+		this.add(table.getScrollpane());
+	}
 
+	public void showMainContestTable(CreateDummyData data) {
+		List<TableInterface> list = Utilities
+				.convertContestList(data.mainContests);
+		
+		TableView table = new TableView(Utilities.getTableData(list));
+		table.getTable().getColumnModel().getColumn(0)
+				.setCellRenderer(new ImageRenderer());
+		table.getTable().setRowHeight(150);
+		currentActivePanel = table;
+		this.add(table.getScrollpane());
+	}
+	
+	
+	
+	public void showUserTable(CreateDummyData data) {
+		List<TableInterface> list = Utilities
+				.convertUserList(data.users);
+		
+		TableView table = new TableView(Utilities.getTableData(list));
+		table.getTable().getColumnModel().getColumn(0)
+		.setCellRenderer(new ImageRenderer());
+table.getTable().setRowHeight(150);
+		currentActivePanel = table;
+		this.add(table.getScrollpane());
+	}
+
+	public void showMainProjectTable(CreateDummyData data) {
+		List<TableInterface> list = Utilities
+				.convertProjectList(data.mainProjects);
+		
+		TableView table = new TableView(Utilities.getTableData(list));
+		table.getTable().getColumnModel().getColumn(0)
+				.setCellRenderer(new ImageRenderer());
+		table.getTable().setRowHeight(150);
+		currentActivePanel = table;
+		this.add(table.getScrollpane());
+	}
+	
+	public void showFeatureProjectTable(CreateDummyData data) {
+		List<TableInterface> list = Utilities
+				.convertProjectList(data.featureProjects);
+		
+		TableView table = new TableView(Utilities.getTableData(list));
+		table.getTable().getColumnModel().getColumn(0)
+				.setCellRenderer(new ImageRenderer());
+		table.getTable().setRowHeight(150);
+		currentActivePanel = table;
+		this.add(table.getScrollpane());
+	}
+	
+	public void showProjectTable(CreateDummyData data) {
+		List<TableInterface> list = Utilities
+				.convertProjectList(data.allProjects);
+		
+		TableView table = new TableView(Utilities.getTableData(list));
+		table.getTable().getColumnModel().getColumn(0)
+				.setCellRenderer(new ImageRenderer());
+		table.getTable().setRowHeight(150);
+		currentActivePanel = table;
+		this.add(table.getScrollpane());
+	}
+	
 	private void createMenu() {
 		this.menu.addMenuWithItems("Datei", "Beenden");
 		this.menu.addMenuWithItems("Hauptwettbewerb",

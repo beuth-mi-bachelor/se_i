@@ -23,7 +23,6 @@ public class ImageDialog extends JFileChooser {
 			File file = filechooser.getSelectedFile();
 			try {
 				this.image = ImageIO.read(file);
-				System.out.println(image);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

@@ -46,11 +46,11 @@ public class User extends TableInterface {
 
 
 	public Object[] getColumn() {
-		return new Object[] { "ID", "Name", "Beigetreten am" };
+		return new Object[] { "Bild", "ID", "Name", "Beigetreten am" };
 	}
 
 	public Object[] getRow() {
-		return new Object[] { this.id, this.name, this.registeredDate };
+		return new Object[] { this.image, this.id, this.name, this.registeredDate };
 	}
 
 	public static long getUNIQUE_ID() {
