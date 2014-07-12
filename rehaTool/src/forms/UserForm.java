@@ -2,7 +2,6 @@ package forms;
 
 import gui.WindowContainerStart;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -18,18 +17,13 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import projects.Project;
-import projects.mainproject.MainProject;
-import tests.CreateDummyData;
-import user.ActiveUser;
+import user.User;
 import dialog.ImageDialog;
 
-public class MainProjectForm extends JPanel {
+public class UserForm extends JPanel {
 
 	/**
 	 * generated serial id
@@ -42,13 +36,11 @@ public class MainProjectForm extends JPanel {
 	private JLabel name;
 	private JLabel wettbewerb;
 	private JLabel img;
-	private JLabel content;
 	private JLabel titel;
 
 	private JTextField textName;
 	private JRadioButton radioButton1;
 	private JRadioButton radioButton2;
-	private JTextArea textContent;
 	private Image image;
 
 	private JButton submitButton;
@@ -60,18 +52,17 @@ public class MainProjectForm extends JPanel {
 	private final JPanel buttonPanel3 = new JPanel();
 
 	private final JPanel panelImage = new JPanel();
-	private final JPanel outerPanel = new JPanel();
 	private JPanel panel;
 	private final JLabel lblNewLabel = new JLabel();
 	private JPanel panel_1;
 	private final JLabel lblBottomimage = new JLabel();
-
 	private final WindowContainerStart parent;
 
-	public MainProjectForm(WindowContainerStart parent) {
+	public UserForm(WindowContainerStart parent) {
+		this.parent = parent;
 		this.setPreferredSize(new Dimension(WindowContainerStart.WIDTH, HEIGHT));
 		this.setBorder(new EmptyBorder(0, 0, 0, 0));
-		this.parent = parent;
+
 		this.initializeForm();
 	}
 
@@ -86,15 +77,13 @@ public class MainProjectForm extends JPanel {
 				0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0,
 				Double.MIN_VALUE };
 		setLayout(gridBagLayout);
-		prizeImageButton = new JButton("Upload");
 		buttonPanel2.setLayout(new BoxLayout(buttonPanel2, BoxLayout.X_AXIS));
-		prizeImageButton.addActionListener(new uploadListener());
 		imageButton = new JButton("Upload");
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
 		imageButton.addActionListener(new uploadListener());
 
 		titel = new JLabel();
-		titel.setText("Mainprojekt erstellen");
+		titel.setText("Benutzer erstellen");
 		titel.setFont(new Font("Arial", Font.ITALIC, 20));
 		GridBagConstraints gbc_titel = new GridBagConstraints();
 		gbc_titel.fill = GridBagConstraints.BOTH;
@@ -104,7 +93,7 @@ public class MainProjectForm extends JPanel {
 		this.add(titel, gbc_titel);
 
 		img = new JLabel();
-		img.setText("Bildupload Mainprojekt: ");
+		img.setText("Profilbild: ");
 
 		GridBagConstraints gbc_img = new GridBagConstraints();
 		gbc_img.fill = GridBagConstraints.BOTH;
@@ -133,7 +122,7 @@ public class MainProjectForm extends JPanel {
 		panel.add(lblNewLabel);
 
 		name = new JLabel();
-		name.setText("Name des Mainprojektes: ");
+		name.setText("Name des Benutzers");
 		GridBagConstraints gbc_name = new GridBagConstraints();
 		gbc_name.fill = GridBagConstraints.BOTH;
 		gbc_name.insets = new Insets(0, 0, 5, 5);
@@ -148,28 +137,6 @@ public class MainProjectForm extends JPanel {
 		gbc_textName.gridx = 1;
 		gbc_textName.gridy = 3;
 		this.add(textName, gbc_textName);
-		content = new JLabel();
-		content.setText("Beschreibung des Mainprojektes: ");
-		GridBagConstraints gbc_content = new GridBagConstraints();
-		gbc_content.fill = GridBagConstraints.BOTH;
-		gbc_content.insets = new Insets(0, 0, 5, 5);
-		gbc_content.gridx = 1;
-		gbc_content.gridy = 4;
-		this.add(content, gbc_content);
-		textContent = new JTextArea(10, 20);
-		textContent.setLineWrap(true);
-
-		outerPanel.setLayout(new BoxLayout(outerPanel, BoxLayout.PAGE_AXIS));
-
-		JScrollPane scrollPane = new JScrollPane(textContent);
-		outerPanel.add(scrollPane, BorderLayout.CENTER);
-
-		GridBagConstraints gbc_outerPanel = new GridBagConstraints();
-		gbc_outerPanel.fill = GridBagConstraints.BOTH;
-		gbc_outerPanel.insets = new Insets(0, 0, 5, 5);
-		gbc_outerPanel.gridx = 1;
-		gbc_outerPanel.gridy = 5;
-		this.add(outerPanel, gbc_outerPanel);
 
 		submitButton = new JButton("Erstellen");
 		cancelButton = new JButton("Abbrechen");
@@ -201,11 +168,9 @@ public class MainProjectForm extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
-			Project project = new MainProject(textName.getText(),
-					textContent.getText(), ActiveUser.getCurrentUser(),
-					CreateDummyData.createFeatureContest(), image);
+			User user = new User(textName.getText(), image);
 			parent.changeWindow();
-			parent.showMainProjectView(project);
+			parent.showUserDetails(user);
 			parent.validate();
 		}
 	}

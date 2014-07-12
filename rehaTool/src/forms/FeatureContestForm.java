@@ -11,7 +11,6 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -26,7 +25,6 @@ import javax.swing.border.EmptyBorder;
 import contests.Contest;
 import contests.Prize;
 import contests.featurecontest.FeatureContest;
-import contests.maincontest.MainContest;
 import dialog.ImageDialog;
 
 public class FeatureContestForm extends JPanel {
@@ -54,9 +52,9 @@ public class FeatureContestForm extends JPanel {
 	private JTextField textEndDate;
 	private JTextField namePrize;
 	private JTextField textPrize;
-	private BufferedImage prizeImage;
+	private Image prizeImage;
 	private JTextArea textContent;
-	private BufferedImage image;
+	private Image image;
 
 	private JButton submitButton;
 	private JButton cancelButton;
@@ -73,7 +71,10 @@ public class FeatureContestForm extends JPanel {
 	private JPanel panel_1;
 	private final JLabel lblBottomimage = new JLabel();
 
-	public FeatureContestForm() {
+	private final WindowContainerStart parent;
+
+	public FeatureContestForm(WindowContainerStart parent) {
+		this.parent = parent;
 		this.setPreferredSize(new Dimension(WindowContainerStart.WIDTH, HEIGHT));
 		this.setBorder(new EmptyBorder(0, 0, 0, 0));
 
@@ -97,17 +98,17 @@ public class FeatureContestForm extends JPanel {
 		imageButton = new JButton("Upload");
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
 		imageButton.addActionListener(new uploadListener());
-		
+
 		titel = new JLabel();
 		titel.setText("Featurcontest erstellen");
-		titel.setFont(new Font("Arial", Font.ITALIC, 20));		
+		titel.setFont(new Font("Arial", Font.ITALIC, 20));
 		GridBagConstraints gbc_titel = new GridBagConstraints();
 		gbc_titel.fill = GridBagConstraints.BOTH;
 		gbc_titel.insets = new Insets(0, 0, 5, 5);
 		gbc_titel.gridx = 0;
 		gbc_titel.gridy = 0;
 		this.add(titel, gbc_titel);
-		
+
 		img = new JLabel();
 		img.setText("Bildupload Nebenwettbewerb: ");
 
@@ -285,15 +286,21 @@ public class FeatureContestForm extends JPanel {
 			Prize prize = new Prize(namePrize.getText(), prizeImage,
 					textPrize.getText());
 			Contest contest = new FeatureContest(textStartDate.getText(),
-					textEndDate.getText(), textName.getText(), prize, image);
-			System.out.println(contest);
+					textContent.getText(), textEndDate.getText(),
+					textName.getText(), prize, image);
+
+			parent.changeWindow();
+			parent.showFeatureContestView(contest);
+			parent.validate();
 		}
 	}
 
 	public class cancelListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO: GO TO START
+			parent.changeWindow();
+			parent.showMain();
+			parent.validate();
 		}
 	}
 
@@ -305,20 +312,15 @@ public class FeatureContestForm extends JPanel {
 			if (button.equals(imageButton)) {
 				ImageDialog imgDialog = new ImageDialog();
 				image = imgDialog.getImage();
-				Image scaledImage = image.getScaledInstance(100, 100,
-						Image.SCALE_SMOOTH);
-				lblNewLabel.setIcon(new ImageIcon(scaledImage));
+				lblNewLabel.setIcon(new ImageIcon(image));
 			}
 			if (button.equals(prizeImageButton)) {
 				ImageDialog imgDialog = new ImageDialog();
 				prizeImage = imgDialog.getImage();
 				image = imgDialog.getImage();
-				Image scaledImage = image.getScaledInstance(100, 100,
-						Image.SCALE_SMOOTH);
-				lblBottomimage.setIcon(new ImageIcon(scaledImage));
+				lblBottomimage.setIcon(new ImageIcon(image));
 			}
 		}
 	}
 
 }
-

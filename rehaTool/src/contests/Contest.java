@@ -1,6 +1,6 @@
 package contests;
 
-import java.awt.image.BufferedImage;
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,11 +18,13 @@ public abstract class Contest extends TableInterface {
 	private final Date createdDate;
 	private String name;
 	private Prize prize;
-	private BufferedImage image;
+	private Image image;
+	private final String description;
 	private List<Project> participants;
 
-	public Contest(String startDate, String endDate, String name, Prize prize,
-			BufferedImage image) {
+	public Contest(String startDate, String description, String endDate,
+			String name, Prize prize, Image image) {
+		this.description = description;
 		this.id = Contest.UNIQUE_ID++;
 		this.startDate = startDate;
 		this.endDate = endDate;
@@ -31,6 +33,10 @@ public abstract class Contest extends TableInterface {
 		this.prize = prize;
 		this.image = image;
 		this.participants = new ArrayList<Project>();
+	}
+
+	public String getDescription() {
+		return this.description;
 	}
 
 	@Override
@@ -54,11 +60,11 @@ public abstract class Contest extends TableInterface {
 		return projects;
 	}
 
-	public BufferedImage getImage() {
+	public Image getImage() {
 		return this.image;
 	}
 
-	public void setImage(BufferedImage image) {
+	public void setImage(Image image) {
 		this.image = image;
 	}
 

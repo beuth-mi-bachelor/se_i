@@ -1,6 +1,6 @@
 package projects;
 
-import java.awt.image.BufferedImage;
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -23,11 +23,11 @@ public abstract class Project extends TableInterface {
 	private User creator;
 	private Contest belongsToProject;
 	private List<Comment> comments;
-	private BufferedImage image;
+	private final Image image;
 	private String content;
 
-	public Project(String name, String content, User creator, Contest belongsToProject,
-			BufferedImage image) {
+	public Project(String name, String content, User creator,
+			Contest belongsToProject, Image image) {
 		super();
 		this.id = Project.UNIQUE_ID++;
 		this.name = name;
@@ -59,7 +59,7 @@ public abstract class Project extends TableInterface {
 				this.creator, this.belongsToProject };
 	}
 
-	public BufferedImage getImage() {
+	public Image getImage() {
 		return this.image;
 	}
 

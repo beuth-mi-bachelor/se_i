@@ -1,5 +1,6 @@
 package user;
 
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Date;
@@ -7,7 +8,9 @@ import java.util.List;
 
 import projects.Project;
 import views.TableInterface;
+
 import comments.Comment;
+
 import contests.Contest;
 
 public class User extends TableInterface {
@@ -15,13 +18,13 @@ public class User extends TableInterface {
 	public static long UNIQUE_ID = 0;
 	private final long id;
 	private final String name;
-	private BufferedImage image;
+	private Image image;
 	private final Date registeredDate;
 	private final List<Project> projectList;
 	private final List<Contest> contestList;
 	private final List<Comment> commentList;
 
-	public User(String name, BufferedImage image) {
+	public User(String name, Image image) {
 		this.id = User.UNIQUE_ID++;
 		this.name = name;
 		this.image = image;
@@ -30,27 +33,24 @@ public class User extends TableInterface {
 		this.contestList = new ArrayList<Contest>();
 		this.commentList = new ArrayList<Comment>();
 	}
-	
-	
 
-	public BufferedImage getImage() {
+	public Image getImage() {
 		return this.image;
 	}
-
-
 
 	public void setImage(BufferedImage image) {
 		this.image = image;
 	}
 
-
-
+	@Override
 	public Object[] getColumn() {
 		return new Object[] { "Bild", "ID", "Name", "Beigetreten am" };
 	}
 
+	@Override
 	public Object[] getRow() {
-		return new Object[] { this.image, this.id, this.name, this.registeredDate };
+		return new Object[] { this.image, this.id, this.name,
+				this.registeredDate };
 	}
 
 	public static long getUNIQUE_ID() {

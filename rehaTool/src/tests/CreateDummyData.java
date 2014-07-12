@@ -13,7 +13,9 @@ import projects.featureproject.FeatureProject;
 import projects.mainproject.MainProject;
 import user.User;
 import utils.Utilities;
+
 import comments.Comment;
+
 import contests.Contest;
 import contests.Prize;
 import contests.featurecontest.FeatureContest;
@@ -77,8 +79,8 @@ public class CreateDummyData {
 			Contest randomContest = contestList.get(getRandomNumberBetween(0,
 					contestList.size()));
 			projectList.add(new FeatureProject("Feature Project "
-					+ getRandomNumber(), getRandomText()[0], randomUser, randomContest,
-					createRandomImage()));
+					+ getRandomNumber(), getRandomText()[0], randomUser,
+					randomContest, createRandomImage()));
 		}
 		return projectList;
 	}
@@ -92,8 +94,8 @@ public class CreateDummyData {
 			Contest randomContest = contestList.get(getRandomNumberBetween(0,
 					contestList.size()));
 			projectList.add(new MainProject(
-					"Main Project " + getRandomNumber(), getRandomText()[0], randomUser,
-					randomContest, createRandomImage()));
+					"Main Project " + getRandomNumber(), getRandomText()[0],
+					randomUser, randomContest, createRandomImage()));
 		}
 		return projectList;
 	}
@@ -126,6 +128,7 @@ public class CreateDummyData {
 	public static Contest createFeatureContest() {
 		return new FeatureContest(
 				Utilities.dateToTextfield(getRandomDateInThePast()),
+				getRandomText()[1],
 				Utilities.dateToTextfield(getRandomDateInTheFuture()),
 				"Feature Contest " + getRandomNumber(), createPrize(),
 				createRandomImage());
@@ -134,6 +137,7 @@ public class CreateDummyData {
 	public static Contest createMainContest() {
 		return new MainContest(
 				Utilities.dateToTextfield(getRandomDateInThePast()),
+				getRandomText()[2],
 				Utilities.dateToTextfield(getRandomDateInTheFuture()),
 				"Main Contest " + getRandomNumber(), createPrize(),
 				createRandomImage());
@@ -166,8 +170,8 @@ public class CreateDummyData {
 		int g = getRandomNumberBetween(0, 255);
 		int b = getRandomNumberBetween(0, 255);
 		Graphics2D g2d = image.createGraphics();
-		g2d.setPaint ( new Color ( r, g, b ) );
-		g2d.fillRect ( 0, 0, image.getWidth(), image.getHeight() );
+		g2d.setPaint(new Color(r, g, b));
+		g2d.fillRect(0, 0, image.getWidth(), image.getHeight());
 		return image;
 	}
 

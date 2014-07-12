@@ -1,6 +1,6 @@
 package contests;
 
-import java.awt.image.BufferedImage;
+import java.awt.Image;
 
 import views.TableInterface;
 
@@ -8,11 +8,11 @@ public class Prize extends TableInterface {
 
 	private final String name;
 	private final String description;
-	private final BufferedImage image;
+	private final Image image;
 
-	public Prize(String name, BufferedImage image, String description) {
+	public Prize(String name, Image prizeImage, String description) {
 		this.name = name;
-		this.image = image;
+		this.image = prizeImage;
 		this.description = description;
 	}
 
@@ -34,7 +34,7 @@ public class Prize extends TableInterface {
 		return this.name;
 	}
 
-	public BufferedImage getImage() {
+	public Image getImage() {
 		return this.image;
 	}
 

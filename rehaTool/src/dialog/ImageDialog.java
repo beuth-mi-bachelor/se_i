@@ -1,5 +1,6 @@
 package dialog;
 
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -14,6 +15,7 @@ public class ImageDialog extends JFileChooser {
 	 */
 	private static final long serialVersionUID = 5717879261840584332L;
 	private BufferedImage image;
+	private Image scaledImage;
 
 	public ImageDialog() {
 		this.image = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
@@ -23,14 +25,16 @@ public class ImageDialog extends JFileChooser {
 			File file = filechooser.getSelectedFile();
 			try {
 				this.image = ImageIO.read(file);
+				this.scaledImage = image.getScaledInstance(150, 150,
+						Image.SCALE_SMOOTH);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
 	}
 
-	public BufferedImage getImage() {
-		return this.image;
+	public Image getImage() {
+		return this.scaledImage;
 	}
 
 }

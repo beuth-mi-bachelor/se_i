@@ -12,7 +12,6 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -38,7 +37,7 @@ public class MainContestForm extends JPanel {
 
 	public JPanel self = this;
 	public Component parent = self.getParent();
-	
+
 	public final static int WIDTH = WindowContainerStart.WIDTH;
 	public final static int HEIGHT = 500;
 
@@ -57,9 +56,9 @@ public class MainContestForm extends JPanel {
 	private JTextField textEndDate;
 	private JTextField namePrize;
 	private JTextField textPrize;
-	private BufferedImage prizeImage;
+	private Image prizeImage;
 	private JTextArea textContent;
-	private BufferedImage image;
+	private Image image;
 
 	private JButton submitButton;
 	private JButton cancelButton;
@@ -103,7 +102,7 @@ public class MainContestForm extends JPanel {
 		imageButton.addActionListener(new uploadListener());
 		titel = new JLabel();
 		titel.setText("Maincontest erstellen");
-		titel.setFont(new Font("Arial", Font.ITALIC, 20));		
+		titel.setFont(new Font("Arial", Font.ITALIC, 20));
 		GridBagConstraints gbc_titel = new GridBagConstraints();
 		gbc_titel.fill = GridBagConstraints.BOTH;
 		gbc_titel.insets = new Insets(0, 0, 5, 5);
@@ -288,8 +287,11 @@ public class MainContestForm extends JPanel {
 			Prize prize = new Prize(namePrize.getText(), prizeImage,
 					textPrize.getText());
 			Contest contest = new MainContest(textStartDate.getText(),
-					textEndDate.getText(), textName.getText(), prize, image);
-			System.out.println(contest);
+					textContent.getText(), textEndDate.getText(),
+					textName.getText(), prize, image);
+			mainFrame.changeWindow();
+			mainFrame.showMainContestView(contest);
+			mainFrame.validate();
 		}
 	}
 
@@ -297,6 +299,8 @@ public class MainContestForm extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			mainFrame.changeWindow();
+			mainFrame.showMain();
+			mainFrame.validate();
 		}
 	}
 
@@ -308,17 +312,13 @@ public class MainContestForm extends JPanel {
 			if (button.equals(imageButton)) {
 				ImageDialog imgDialog = new ImageDialog();
 				image = imgDialog.getImage();
-				Image scaledImage = image.getScaledInstance(100, 100,
-						Image.SCALE_SMOOTH);
-				lblNewLabel.setIcon(new ImageIcon(scaledImage));
+				lblNewLabel.setIcon(new ImageIcon(image));
 			}
 			if (button.equals(prizeImageButton)) {
 				ImageDialog imgDialog = new ImageDialog();
 				prizeImage = imgDialog.getImage();
 				image = imgDialog.getImage();
-				Image scaledImage = image.getScaledInstance(100, 100,
-						Image.SCALE_SMOOTH);
-				lblBottomimage.setIcon(new ImageIcon(scaledImage));
+				lblBottomimage.setIcon(new ImageIcon(image));
 			}
 		}
 	}
