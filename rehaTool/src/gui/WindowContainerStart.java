@@ -23,7 +23,9 @@ import views.TableInterface;
 import views.TableView;
 import contests.Contest;
 import forms.FeatureContestForm;
+import forms.FeatureProjectForm;
 import forms.MainContestForm;
+import forms.MainProjectForm;
 import forms.UserDetails;
 import forms.UserForm;
 
@@ -144,7 +146,19 @@ public class WindowContainerStart extends JFrame implements ActionListener {
 		this.add(currentActivePanel, BorderLayout.CENTER);
 		this.repaint();
 	}
+	
+	public void showMainProjectForm() {
+		currentActivePanel = new MainProjectForm(this);
+		this.add(currentActivePanel, BorderLayout.CENTER);
+		this.repaint();
+	}
 
+	public void showFeatureProjectForm() {
+		currentActivePanel = new FeatureProjectForm(this);
+		this.add(currentActivePanel, BorderLayout.CENTER);
+		this.repaint();
+	}
+	
 	public void changeWindow() {
 		this.remove(currentActivePanel);
 		if (table != null) {
@@ -308,7 +322,28 @@ public class WindowContainerStart extends JFrame implements ActionListener {
 			changeWindow();
 			showProjectTable(data);
 			validate();
-		} else {
+		} 
+		else if (e.getActionCommand().equals("Featureprojekte anzeigen")) {
+			changeWindow();
+			showFeatureProjectTable(data);
+			validate();
+		} 
+		else if (e.getActionCommand().equals("Mainprojekte anzeigen")) {
+			changeWindow();
+			showMainProjectTable(data);
+			validate();
+		}
+		else if (e.getActionCommand().equals("Mainprojekt erstellen")) {
+			changeWindow();
+			showMainProjectForm();
+			validate();
+		}
+		else if (e.getActionCommand().equals("Featureprojekt erstellen")) {
+			changeWindow();
+			showFeatureProjectForm();
+			validate();
+		}
+		else {
 			changeWindow();
 			showMain();
 			validate();
