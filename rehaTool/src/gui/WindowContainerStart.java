@@ -38,7 +38,7 @@ public class WindowContainerStart extends JFrame implements ActionListener{
 	public ActionListener event = this;
 	public WindowContainerStart window = this;
 	public Container currentActivePanel;
-	
+	private TableView table;
 	private final MenuBar menu;
 	private CreateDummyData data;
 	
@@ -96,7 +96,12 @@ public class WindowContainerStart extends JFrame implements ActionListener{
 
 	public void changeWindow() {
 		this.remove(currentActivePanel);
-		this.repaint();
+		if(table !=null){
+		this.remove(table.getScrollpane());		
+		}
+		
+		
+		
 	}
 	public void repaintWindow() {
 		this.repaint();
@@ -105,7 +110,7 @@ public class WindowContainerStart extends JFrame implements ActionListener{
 		List<TableInterface> list = Utilities
 				.convertContestList(data.allContests);
 		
-		TableView table = new TableView(Utilities.getTableData(list));
+		table = new TableView(Utilities.getTableData(list));
 		table.getTable().getColumnModel().getColumn(0)
 				.setCellRenderer(new ImageRenderer());
 		table.getTable().setRowHeight(150);
@@ -118,7 +123,7 @@ public class WindowContainerStart extends JFrame implements ActionListener{
 		List<TableInterface> list = Utilities
         .convertContestList(data.featureContests);
 		
-		TableView table = new TableView(Utilities.getTableData(list));
+		table = new TableView(Utilities.getTableData(list));
 		table.getTable().getColumnModel().getColumn(0)
         .setCellRenderer(new ImageRenderer());
 		table.getTable().setRowHeight(150);
@@ -131,7 +136,7 @@ public class WindowContainerStart extends JFrame implements ActionListener{
 		List<TableInterface> list = Utilities
         .convertContestList(data.mainContests);
 		
-		TableView table = new TableView(Utilities.getTableData(list));
+		table = new TableView(Utilities.getTableData(list));
 		table.getTable().getColumnModel().getColumn(0)
         .setCellRenderer(new ImageRenderer());
 		table.getTable().setRowHeight(150);
@@ -146,7 +151,7 @@ public class WindowContainerStart extends JFrame implements ActionListener{
 		List<TableInterface> list = Utilities
         .convertUserList(data.users);
 		
-		TableView table = new TableView(Utilities.getTableData(list));
+		table = new TableView(Utilities.getTableData(list));
 		table.getTable().getColumnModel().getColumn(0)
 		.setCellRenderer(new ImageRenderer());
         table.getTable().setRowHeight(150);
@@ -159,7 +164,7 @@ public class WindowContainerStart extends JFrame implements ActionListener{
 		List<TableInterface> list = Utilities
         .convertProjectList(data.mainProjects);
 		
-		TableView table = new TableView(Utilities.getTableData(list));
+		table = new TableView(Utilities.getTableData(list));
 		table.getTable().getColumnModel().getColumn(0)
         .setCellRenderer(new ImageRenderer());
 		table.getTable().setRowHeight(150);
@@ -172,7 +177,7 @@ public class WindowContainerStart extends JFrame implements ActionListener{
 		List<TableInterface> list = Utilities
         .convertProjectList(data.featureProjects);
 		
-		TableView table = new TableView(Utilities.getTableData(list));
+		table = new TableView(Utilities.getTableData(list));
 		table.getTable().getColumnModel().getColumn(0)
         .setCellRenderer(new ImageRenderer());
 		table.getTable().setRowHeight(150);
@@ -185,7 +190,7 @@ public class WindowContainerStart extends JFrame implements ActionListener{
 		List<TableInterface> list = Utilities
         .convertProjectList(data.allProjects);
 		
-		TableView table = new TableView(Utilities.getTableData(list));
+		table = new TableView(Utilities.getTableData(list));
 		table.getTable().getColumnModel().getColumn(0)
         .setCellRenderer(new ImageRenderer());
 		table.getTable().setRowHeight(150);
@@ -231,7 +236,7 @@ public class WindowContainerStart extends JFrame implements ActionListener{
 			System.exit(0);
 		} else if (e.getActionCommand().equals("Benutzer Erstellen")) {
 			changeWindow();
-			
+			showUserDetails();
 			validate();			
 		} else if (e.getActionCommand().equals("Benutzer Anzeigen")) {
 			changeWindow();
@@ -247,13 +252,13 @@ public class WindowContainerStart extends JFrame implements ActionListener{
 			validate();			
 		} else if (e.getActionCommand().equals("Nebenwettbewerb Erstellen")) {
 			changeWindow();
-			// TO DO
+			showFeatureContestTable(data);
 			validate();				
 		} else if (e.getActionCommand().equals("Nebenwettbewerb Anzeigen")) {
 			changeWindow();
-			showFeatureContestTable(data);			
+			showFeatureContestTable(data);		
 			validate();				
-		} else if (e.getActionCommand().equals("Projekte suchen")) {
+		} else if (e.getActionCommand().equals("Projekt ")) {
 			changeWindow();
 			// TO DO
 			validate();				
