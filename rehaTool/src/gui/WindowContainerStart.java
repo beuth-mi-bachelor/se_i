@@ -3,11 +3,22 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.List;
 
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import projects.Project;
 import tests.CreateDummyData;
@@ -33,7 +44,7 @@ import forms.UserForm;
  * @author Angelina Staeck, Michael Duve & Paul Sprotte
  */
 public class WindowContainerStart extends JFrame implements ActionListener {
-
+	
 	/*
 	 * generated serial id
 	 */
@@ -72,6 +83,7 @@ public class WindowContainerStart extends JFrame implements ActionListener {
 		// showFeatureProjectDetails();
 		// showMainProjectDetails();
 		this.setVisible(true);
+		 
 
 	}
 
@@ -171,7 +183,7 @@ public class WindowContainerStart extends JFrame implements ActionListener {
 		this.repaint();
 	}
 
-	public void showContestTable(CreateDummyData data) {
+	/*public void showContestTable(CreateDummyData data) {
 		List<TableInterface> list = Utilities
 				.convertContestList(data.allContests);
 
@@ -179,10 +191,21 @@ public class WindowContainerStart extends JFrame implements ActionListener {
 		table.getTable().getColumnModel().getColumn(0)
 				.setCellRenderer(new ImageRenderer());
 		table.getTable().setRowHeight(150);
+		table.getTable().setCellSelectionEnabled(true);
+	    ListSelectionModel cellSelectionModel = table.getTable().getSelectionModel();
+
+	    cellSelectionModel.addListSelectionListener(new ListSelectionListener() {
+	      public void valueChanged(ListSelectionEvent e) {
+			changeWindow();
+	        showMainContestView(CreateDummyData.createMainContest());
+			validate();
+	      }
+
+	    });
 		currentActivePanel = table.getScrollpane();
 		this.add(currentActivePanel);
 		this.repaint();
-	}
+	}*/
 
 	public void showFeatureContestTable(CreateDummyData data) {
 		List<TableInterface> list = Utilities
@@ -192,9 +215,24 @@ public class WindowContainerStart extends JFrame implements ActionListener {
 		table.getTable().getColumnModel().getColumn(0)
 				.setCellRenderer(new ImageRenderer());
 		table.getTable().setRowHeight(150);
+		
+		table.getTable().setCellSelectionEnabled(true);
+	    ListSelectionModel cellSelectionModel = table.getTable().getSelectionModel();
+
+	    cellSelectionModel.addListSelectionListener(new ListSelectionListener() {
+	      public void valueChanged(ListSelectionEvent e) {
+			changeWindow();
+	        showFeatureContestView(CreateDummyData.createFeatureContest());
+			validate();
+	      }
+
+	    });
 		currentActivePanel = table;
+
 		this.add(table.getScrollpane());
 		this.repaint();
+		
+
 	}
 
 	public void showMainContestTable(CreateDummyData data) {
@@ -205,6 +243,17 @@ public class WindowContainerStart extends JFrame implements ActionListener {
 		table.getTable().getColumnModel().getColumn(0)
 				.setCellRenderer(new ImageRenderer());
 		table.getTable().setRowHeight(150);
+		table.getTable().setCellSelectionEnabled(true);
+	    ListSelectionModel cellSelectionModel = table.getTable().getSelectionModel();
+
+	    cellSelectionModel.addListSelectionListener(new ListSelectionListener() {
+	      public void valueChanged(ListSelectionEvent e) {
+			changeWindow();
+	        showMainContestView(CreateDummyData.createMainContest());
+			validate();
+	      }
+
+	    });
 		currentActivePanel = table;
 		this.add(table.getScrollpane());
 		this.repaint();
@@ -217,6 +266,17 @@ public class WindowContainerStart extends JFrame implements ActionListener {
 		table.getTable().getColumnModel().getColumn(0)
 				.setCellRenderer(new ImageRenderer());
 		table.getTable().setRowHeight(150);
+		table.getTable().setCellSelectionEnabled(true);
+	    ListSelectionModel cellSelectionModel = table.getTable().getSelectionModel();
+
+	    cellSelectionModel.addListSelectionListener(new ListSelectionListener() {
+	      public void valueChanged(ListSelectionEvent e) {
+			changeWindow();
+	        showUserDetails(CreateDummyData.createRandomUser());
+			validate();
+	      }
+
+	    });
 		currentActivePanel = table;
 		this.add(table.getScrollpane());
 		this.repaint();
@@ -230,6 +290,17 @@ public class WindowContainerStart extends JFrame implements ActionListener {
 		table.getTable().getColumnModel().getColumn(0)
 				.setCellRenderer(new ImageRenderer());
 		table.getTable().setRowHeight(150);
+		table.getTable().setCellSelectionEnabled(true);
+	    ListSelectionModel cellSelectionModel = table.getTable().getSelectionModel();
+
+	    cellSelectionModel.addListSelectionListener(new ListSelectionListener() {
+	      public void valueChanged(ListSelectionEvent e) {
+			changeWindow();
+	        showMainProjectView(CreateDummyData.createMainProject());
+			validate();
+	      }
+
+	    });
 		currentActivePanel = table;
 		this.add(table.getScrollpane());
 		this.repaint();
@@ -243,8 +314,19 @@ public class WindowContainerStart extends JFrame implements ActionListener {
 		table.getTable().getColumnModel().getColumn(0)
 				.setCellRenderer(new ImageRenderer());
 		table.getTable().setRowHeight(150);
+		table.getTable().setCellSelectionEnabled(true);
+	    ListSelectionModel cellSelectionModel = table.getTable().getSelectionModel();
+
+	    cellSelectionModel.addListSelectionListener(new ListSelectionListener() {
+	      public void valueChanged(ListSelectionEvent e) {
+			changeWindow();
+	        showFeatureProjectView(CreateDummyData.createFeatureProject());
+			validate();
+	      }
+
+	    });
 		currentActivePanel = table;
-		this.add(table.getScrollpane());
+		this.add(table.getScrollpane());				
 		this.repaint();
 	}
 
@@ -256,7 +338,19 @@ public class WindowContainerStart extends JFrame implements ActionListener {
 		table.getTable().getColumnModel().getColumn(0)
 				.setCellRenderer(new ImageRenderer());
 		table.getTable().setRowHeight(150);
+		table.getTable().setCellSelectionEnabled(true);
+	    ListSelectionModel cellSelectionModel = table.getTable().getSelectionModel();
+
+	    cellSelectionModel.addListSelectionListener(new ListSelectionListener() {
+	      public void valueChanged(ListSelectionEvent e) {
+			changeWindow();
+	        showFeatureProjectView(CreateDummyData.createFeatureProject());
+			validate();
+	      }
+
+	    });
 		currentActivePanel = table;
+		
 		this.add(table.getScrollpane());
 		this.repaint();
 	}

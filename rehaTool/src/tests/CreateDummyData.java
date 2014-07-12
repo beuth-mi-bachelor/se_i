@@ -2,6 +2,7 @@ package tests;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,9 +14,7 @@ import projects.featureproject.FeatureProject;
 import projects.mainproject.MainProject;
 import user.User;
 import utils.Utilities;
-
 import comments.Comment;
-
 import contests.Contest;
 import contests.Prize;
 import contests.featurecontest.FeatureContest;
@@ -140,6 +139,24 @@ public class CreateDummyData {
 				getRandomText()[2],
 				Utilities.dateToTextfield(getRandomDateInTheFuture()),
 				"Main Contest " + getRandomNumber(), createPrize(),
+				createRandomImage());
+	}
+	
+	public static Project createMainProject() {
+		return new MainProject(
+				"Main Project " + getRandomNumber(),
+				getRandomText()[2],
+				createRandomUser(),
+				createMainContest(),
+				createRandomImage());
+	}
+	
+	public static Project createFeatureProject() {
+		return new MainProject(
+				"Feature Project " + getRandomNumber(),
+				getRandomText()[2],
+				createRandomUser(),
+				createFeatureContest(),
 				createRandomImage());
 	}
 
