@@ -10,13 +10,18 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import projects.Project;
+import tests.CreateDummyData;
+
+import comments.Comment;
 
 public class FeatureProjectView extends JPanel {
 
@@ -44,6 +49,12 @@ public class FeatureProjectView extends JPanel {
 	private JButton btnBewerten;
 	private JLabel lblBewertung;
 	private JLabel label;
+
+	private DefaultListModel<String> listModel;
+
+	private JButton commentButton;
+
+	private JList<String> list;
 
 	public FeatureProjectView(Project featureProject) {
 		this.setPreferredSize(new Dimension(WindowContainerStart.WIDTH, HEIGHT));
@@ -166,6 +177,27 @@ public class FeatureProjectView extends JPanel {
 		gbc_btnBewerten.gridy = 12;
 		add(btnBewerten, gbc_btnBewerten);
 		btnBewerten.addActionListener(new ScoreListener());
+
+		listModel = new DefaultListModel<String>();
+		for (Comment comment : this.featureProject.getComments()) {
+			listModel.addElement(comment.toString());
+		}
+
+		commentButton = new JButton("Kommentieren");
+		GridBagConstraints gbc_commentButton = new GridBagConstraints();
+		gbc_commentButton.insets = new Insets(0, 0, 5, 5);
+		gbc_commentButton.gridx = 1;
+		gbc_commentButton.gridy = 13;
+		add(commentButton, gbc_commentButton);
+		commentButton.addActionListener(new CommentListener());
+
+		list = new JList<String>(listModel);
+		GridBagConstraints gbc_list = new GridBagConstraints();
+		gbc_list.insets = new Insets(0, 0, 0, 5);
+		gbc_list.fill = GridBagConstraints.BOTH;
+		gbc_list.gridx = 1;
+		gbc_list.gridy = 14;
+		add(list, gbc_list);
 	}
 
 	public class ScoreListener implements ActionListener {
@@ -179,6 +211,20 @@ public class FeatureProjectView extends JPanel {
 			featureProject.setScore(arg + 1);
 			label.setText(featureProject.getScore() + "Sterne");
 			btnBewerten.setEnabled(false);
+			repaint();
+		}
+	}
+
+	public class CommentListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String arg = JOptionPane
+					.showInputDialog("Bitte Kommentar eingeben");
+
+			Comment newComment = new Comment(CreateDummyData
+					.createUserDummyList(5).get(0), arg);
+			featureProject.addComment(newComment);
+			listModel.addElement(newComment.toString());
 			repaint();
 		}
 	}
