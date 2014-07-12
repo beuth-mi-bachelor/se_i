@@ -5,8 +5,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 
-public class TableView extends JPanel{
+public class TableView extends JPanel {
 
+	/**
+	 * generated serial id
+	 */
+	private static final long serialVersionUID = 5869292673752842784L;
 	private final JTable table;
 	private final JScrollPane scrollpane;
 

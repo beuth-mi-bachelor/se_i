@@ -17,7 +17,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -40,14 +39,11 @@ public class FeatureProjectForm extends JPanel {
 	public final static int HEIGHT = 500;
 
 	private JLabel name;
-	private JLabel wettbewerb;
 	private JLabel img;
 	private JLabel content;
 	private JLabel titel;
 
 	private JTextField textName;
-	private JRadioButton radioButton1;
-	private JRadioButton radioButton2;
 	private JTextArea textContent;
 	private Image image;
 
@@ -59,6 +55,7 @@ public class FeatureProjectForm extends JPanel {
 	private final JPanel buttonPanel2 = new JPanel();
 	private final JPanel buttonPanel3 = new JPanel();
 
+	@SuppressWarnings("unused")
 	private final JPanel panelImage = new JPanel();
 	private final JPanel outerPanel = new JPanel();
 	private JPanel panel;

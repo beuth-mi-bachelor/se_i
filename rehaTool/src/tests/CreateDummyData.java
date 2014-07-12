@@ -2,9 +2,9 @@ package tests;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -14,7 +14,9 @@ import projects.featureproject.FeatureProject;
 import projects.mainproject.MainProject;
 import user.User;
 import utils.Utilities;
+
 import comments.Comment;
+
 import contests.Contest;
 import contests.Prize;
 import contests.featurecontest.FeatureContest;
@@ -44,6 +46,7 @@ public class CreateDummyData {
 				this.users, this.featureContests);
 		this.allProjects.addAll(this.mainProjects);
 		this.allProjects.addAll(this.featureProjects);
+		fillWithComments(this.comments);
 	}
 
 	@Override
@@ -67,6 +70,25 @@ public class CreateDummyData {
 					% textArray.length]));
 		}
 		return commentList;
+	}
+
+	public void fillWithComments(List<Comment> comments) {
+		long seed = System.nanoTime();
+		for (int i = 0; i < this.allProjects.size(); i++) {
+			Project project = this.allProjects.get(i);
+			Collections.shuffle(comments, new Random(seed));
+			project.setComments(comments);
+		}
+		for (int i = 0; i < this.featureProjects.size(); i++) {
+			Project project = this.featureProjects.get(i);
+			Collections.shuffle(comments, new Random(seed));
+			project.setComments(comments);
+		}
+		for (int i = 0; i < this.mainProjects.size(); i++) {
+			Project project = this.mainProjects.get(i);
+			Collections.shuffle(comments, new Random(seed));
+			project.setComments(comments);
+		}
 	}
 
 	public static List<Project> createFeatureProjectDummyList(
@@ -141,22 +163,16 @@ public class CreateDummyData {
 				"Main Contest " + getRandomNumber(), createPrize(),
 				createRandomImage());
 	}
-	
+
 	public static Project createMainProject() {
-		return new MainProject(
-				"Main Project " + getRandomNumber(),
-				getRandomText()[2],
-				createRandomUser(),
-				createMainContest(),
+		return new MainProject("Main Project " + getRandomNumber(),
+				getRandomText()[2], createRandomUser(), createMainContest(),
 				createRandomImage());
 	}
-	
+
 	public static Project createFeatureProject() {
-		return new MainProject(
-				"Feature Project " + getRandomNumber(),
-				getRandomText()[2],
-				createRandomUser(),
-				createFeatureContest(),
+		return new MainProject("Feature Project " + getRandomNumber(),
+				getRandomText()[2], createRandomUser(), createFeatureContest(),
 				createRandomImage());
 	}
 

@@ -16,7 +16,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
@@ -34,23 +33,20 @@ public class UserForm extends JPanel {
 	public final static int HEIGHT = 500;
 
 	private JLabel name;
-	private JLabel wettbewerb;
 	private JLabel img;
 	private JLabel titel;
 
 	private JTextField textName;
-	private JRadioButton radioButton1;
-	private JRadioButton radioButton2;
 	private Image image;
 
 	private JButton submitButton;
 	private JButton cancelButton;
-	private JButton prizeImageButton;
 	private JButton imageButton;
 	private final JPanel buttonPanel = new JPanel();
 	private final JPanel buttonPanel2 = new JPanel();
 	private final JPanel buttonPanel3 = new JPanel();
 
+	@SuppressWarnings("unused")
 	private final JPanel panelImage = new JPanel();
 	private JPanel panel;
 	private final JLabel lblNewLabel = new JLabel();

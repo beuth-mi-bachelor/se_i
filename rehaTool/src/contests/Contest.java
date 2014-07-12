@@ -8,6 +8,8 @@ import java.util.List;
 import projects.Project;
 import views.TableInterface;
 
+import comments.Comment;
+
 public abstract class Contest extends TableInterface {
 
 	public static long UNIQUE_ID = 0;
@@ -21,6 +23,7 @@ public abstract class Contest extends TableInterface {
 	private Image image;
 	private final String description;
 	private List<Project> participants;
+	private final List<Comment> comments;
 
 	public Contest(String startDate, String description, String endDate,
 			String name, Prize prize, Image image) {
@@ -33,10 +36,15 @@ public abstract class Contest extends TableInterface {
 		this.prize = prize;
 		this.image = image;
 		this.participants = new ArrayList<Project>();
+		this.comments = new ArrayList<Comment>();
 	}
 
 	public String getDescription() {
 		return this.description;
+	}
+
+	public List<Comment> getComments() {
+		return this.comments;
 	}
 
 	@Override

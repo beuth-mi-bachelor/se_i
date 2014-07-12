@@ -64,6 +64,7 @@ public class FeatureContestForm extends JPanel {
 	private final JPanel buttonPanel2 = new JPanel();
 	private final JPanel buttonPanel3 = new JPanel();
 
+	@SuppressWarnings("unused")
 	private final JPanel panelImage = new JPanel();
 	private final JPanel outerPanel = new JPanel();
 	private JPanel panel;

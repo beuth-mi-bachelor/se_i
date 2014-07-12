@@ -7,7 +7,6 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -31,16 +30,10 @@ public class FeatureContestView extends JPanel {
 	private JLabel username;
 	private JLabel content;
 	private JLabel contest;
-	private BufferedImage prizeImage;
-	private BufferedImage image;
 
-	private final JPanel panelImage = new JPanel();
 	private JPanel panel;
 	private final JLabel lblNewLabel = new JLabel();
 	private JLabel lblProjektname;
-	private JLabel lblContent;
-	private JLabel lblUsername;
-	private JLabel lblcontest;
 	private final Contest featureContest;
 	private JLabel projekt;
 	private JLabel lblNewLabel_1;

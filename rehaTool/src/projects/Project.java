@@ -23,8 +23,14 @@ public abstract class Project extends TableInterface {
 	private User creator;
 	private Contest belongsToProject;
 	private List<Comment> comments;
-	private final Image image;
+	private Image image;
+
+	public void setImage(Image image) {
+		this.image = image;
+	}
+
 	private String content;
+	private int score;
 
 	public Project(String name, String content, User creator,
 			Contest belongsToProject, Image image) {
@@ -37,6 +43,15 @@ public abstract class Project extends TableInterface {
 		this.belongsToProject = belongsToProject;
 		this.comments = new ArrayList<Comment>();
 		this.image = image;
+		this.score = 0;
+	}
+
+	public int getScore() {
+		return this.score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
 	}
 
 	public String getContent() {
