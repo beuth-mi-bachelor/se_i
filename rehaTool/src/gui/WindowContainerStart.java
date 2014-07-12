@@ -56,7 +56,7 @@ public class WindowContainerStart extends JFrame implements ActionListener {
 		this.setWindowPreferences();
 		this.menu = new MenuBar();
 		this.createMenu();
-		data = new CreateDummyData(50);
+		data = new CreateDummyData(5);
 		showMain();
 		this.setVisible(true);
 	}
@@ -259,7 +259,7 @@ public class WindowContainerStart extends JFrame implements ActionListener {
 		this.repaint();
 	}
 
-	public void showMainProjectTable(CreateDummyData data) {
+	public void showMainProjectTable(final CreateDummyData data) {
 		List<TableInterface> list = Utilities
 				.convertProjectList(data.mainProjects);
 
@@ -276,7 +276,7 @@ public class WindowContainerStart extends JFrame implements ActionListener {
 					@Override
 					public void valueChanged(ListSelectionEvent e) {
 						changeWindow();
-						showMainProjectView(CreateDummyData.createMainProject());
+						showMainProjectView(data.mainProjects.get(0));
 						validate();
 					}
 
@@ -286,7 +286,7 @@ public class WindowContainerStart extends JFrame implements ActionListener {
 		this.repaint();
 	}
 
-	public void showFeatureProjectTable(CreateDummyData data) {
+	public void showFeatureProjectTable(final CreateDummyData data) {
 		List<TableInterface> list = Utilities
 				.convertProjectList(data.featureProjects);
 
@@ -303,8 +303,7 @@ public class WindowContainerStart extends JFrame implements ActionListener {
 					@Override
 					public void valueChanged(ListSelectionEvent e) {
 						changeWindow();
-						showFeatureProjectView(CreateDummyData
-								.createFeatureProject());
+						showFeatureProjectView(data.featureProjects.get(0));
 						validate();
 					}
 
@@ -314,7 +313,7 @@ public class WindowContainerStart extends JFrame implements ActionListener {
 		this.repaint();
 	}
 
-	public void showProjectTable(CreateDummyData data) {
+	public void showProjectTable(final CreateDummyData data) {
 		List<TableInterface> list = Utilities
 				.convertProjectList(data.allProjects);
 
@@ -331,8 +330,7 @@ public class WindowContainerStart extends JFrame implements ActionListener {
 					@Override
 					public void valueChanged(ListSelectionEvent e) {
 						changeWindow();
-						showFeatureProjectView(CreateDummyData
-								.createFeatureProject());
+						showFeatureProjectView(data.allProjects.get(0));
 						validate();
 					}
 

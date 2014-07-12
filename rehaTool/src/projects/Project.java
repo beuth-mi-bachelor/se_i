@@ -126,6 +126,10 @@ public abstract class Project extends TableInterface {
 		this.comments = comments;
 	}
 
+	public void addComment(Comment comment) {
+		this.comments.add(comment);
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

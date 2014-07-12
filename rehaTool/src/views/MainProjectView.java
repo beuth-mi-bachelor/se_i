@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import projects.Project;
+import tests.CreateDummyData;
 
 import comments.Comment;
 
@@ -39,12 +40,12 @@ public class MainProjectView extends JPanel {
 	private JLabel contest;
 
 	private JPanel panel;
-	private final JLabel lblNewLabel = new JLabel();
+	private JLabel lblNewLabel = new JLabel();
 	private JLabel lblProjektname;
 	private JLabel lblContent;
 	private JLabel lblUsername;
 	private JLabel lblcontest;
-	private final Project mainProject;
+	private Project mainProject;
 	private JLabel projekt;
 
 	private JLabel lblBewertung;
@@ -53,6 +54,8 @@ public class MainProjectView extends JPanel {
 
 	private JButton btnBewerten;
 	private JList<String> list;
+	private JButton commentButton;
+	DefaultListModel<String> listModel;
 
 	public MainProjectView(Project mainProject) {
 		this.setPreferredSize(new Dimension(WindowContainerStart.WIDTH, HEIGHT));
@@ -65,10 +68,10 @@ public class MainProjectView extends JPanel {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 150, 500, 150 };
 		gridBagLayout.rowHeights = new int[] { 10, 150, 30, 30, 30, 0, 0, 0, 0,
-				0, 0, 0, 0, 0 };
+				0, 0, 0, 0, 0, 0 };
 		gridBagLayout.columnWeights = new double[] { 0.0, 1.0 };
 		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-				0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0 };
+				0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0 };
 		setLayout(gridBagLayout);
 
 		projekt = new JLabel("Projekt Details");
@@ -177,20 +180,29 @@ public class MainProjectView extends JPanel {
 		gbc_btnBewerten.gridy = 12;
 		add(btnBewerten, gbc_btnBewerten);
 		btnBewerten.addActionListener(new ScoreListener());
+		gbc_btnBewerten.insets = new Insets(0, 0, 5, 5);
+		gbc_btnBewerten.gridx = 1;
+		gbc_btnBewerten.gridy = 12;
 
-		DefaultListModel<String> listModel = new DefaultListModel<String>();
-		System.out.println(this.mainProject.getComments());
+		listModel = new DefaultListModel<String>();
 		for (Comment comment : this.mainProject.getComments()) {
 			listModel.addElement(comment.toString());
-			System.out.println(comment);
 		}
+
+		commentButton = new JButton("Kommentieren");
+		GridBagConstraints gbc_commentButton = new GridBagConstraints();
+		gbc_commentButton.insets = new Insets(0, 0, 5, 5);
+		gbc_commentButton.gridx = 1;
+		gbc_commentButton.gridy = 13;
+		add(commentButton, gbc_commentButton);
+		commentButton.addActionListener(new CommentListener());
 
 		list = new JList<String>(listModel);
 		GridBagConstraints gbc_list = new GridBagConstraints();
 		gbc_list.insets = new Insets(0, 0, 0, 5);
 		gbc_list.fill = GridBagConstraints.BOTH;
 		gbc_list.gridx = 1;
-		gbc_list.gridy = 13;
+		gbc_list.gridy = 14;
 		add(list, gbc_list);
 
 	}
@@ -206,6 +218,20 @@ public class MainProjectView extends JPanel {
 			mainProject.setScore(arg + 1);
 			label.setText(mainProject.getScore() + "Sterne");
 			btnBewerten.setEnabled(false);
+			repaint();
+		}
+	}
+
+	public class CommentListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String arg = JOptionPane
+					.showInputDialog("Bitte Kommentar eingeben");
+
+			Comment newComment = new Comment(CreateDummyData
+					.createUserDummyList(5).get(0), arg);
+			mainProject.addComment(newComment);
+			listModel.addElement(newComment.toString());
 			repaint();
 		}
 	}

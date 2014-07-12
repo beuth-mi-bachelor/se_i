@@ -160,10 +160,7 @@ public class User extends TableInterface {
 
 	@Override
 	public String toString() {
-		return "User [id=" + this.id + ", name=" + this.name
-				+ ", registeredDate=" + this.registeredDate + ", projectList="
-				+ this.projectList + ", contestList=" + this.contestList
-				+ ", commentList=" + this.commentList + "]";
+		return "User " + this.name;
 	}
 
 }
